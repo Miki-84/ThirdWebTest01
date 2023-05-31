@@ -1,25 +1,30 @@
-import { LatLngBoundsExpression, Rectangle } from 'leaflet';
-import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet'
+import { LatLngBoundsExpression } from 'leaflet';
+import { MapContainer, TileLayer, CircleMarker, Rectangle } from 'react-leaflet'
 
-
+import * as L from 'leaflet';
 // import "./styles/Home.css";
 
 export default function Map() {
 
-  const rectangle = [[51.49, -0.08], [51.5, -0.06]] as LatLngBoundsExpression;
+  const rectangle = [[50,50], [108, 170]] as LatLngBoundsExpression;
+  const maxMapBounds = [[0,0], [108, 192]] as LatLngBoundsExpression;
 
   const orange = { color: 'orange' }
+  const purpler = { color: 'purple'}
 
-  const lands = [] 
+  const lands = []
 
   function getLands() {
     for (let i = 0; i < 108; i++) {
       for (let j = 0; j < 192; j++) {
         var rectBounds = [[1 * i, 1 * j], [1 * (i + 1), 1 * (j + 1)]] as LatLngBoundsExpression
         lands.push(<Rectangle bounds={rectBounds} pathOptions={orange} />)
+        console.log(rectBounds)
       }
     }
-
+    return (lands)
+    
+   
   }
 
   return (
@@ -30,21 +35,27 @@ export default function Map() {
         </h1>
         <MapContainer
           style={{ width: "960px", height: "540px" }}
-          zoom={13}
-          center={[51.505, -0.09]}
+          zoom={2}
+          center={[50, 50]}
           // scrollWheelZoom={false}
           fadeAnimation={true}
           markerZoomAnimation={true}
+          maxBounds={maxMapBounds}
+          minZoom={2}
+          maxZoom={6}
+          crs={L.CRS.Simple}
         >
-          <TileLayer
+          {/* <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
+          /> */}
           {
-            getLands();
+            getLands()
           }
-          <Rectangle bounds={rectangle} pathOptions={orange} />
-
+          <>
+          {/* <Rectangle bounds={rectangle} pathOptions={orange} /> */}
+          {/* <Rectangle bounds={maxMapBounds} pathOptions={purpler} /> */}
+          </>
         </MapContainer>
       </main>
     </div>
