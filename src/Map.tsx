@@ -22,7 +22,7 @@ export default function Map() {
         console.log(rectBounds)
       }
     }
-    return (lands)
+    return (<>lands</>)
     
    
   }
