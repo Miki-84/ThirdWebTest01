@@ -12,7 +12,7 @@ export default function Map() {
   const orange = { color: 'orange' }
   const purpler = { color: 'purple'}
 
-  const lands = []
+  const lands: React.ReactNode[] = []
 
   function getLands() {
     for (let i = 0; i < 108; i++) {
@@ -22,8 +22,22 @@ export default function Map() {
         console.log(rectBounds)
       }
     }
-    return (<>lands</>)
+    //NO VA
+    //return (<>lands</>)
     
+    //FUNCIONA
+    // return(
+    //   <>
+    //   <Rectangle bounds={rectangle} pathOptions={orange} />
+    //   <Rectangle bounds={maxMapBounds} pathOptions={purpler} />
+    //   </>
+    // )
+
+    //
+    lands.push(<Rectangle bounds={rectangle} pathOptions={orange} />)
+    lands.push(<Rectangle bounds={maxMapBounds} pathOptions={purpler} />)
+
+    return(lands)
    
   }
 
@@ -31,7 +45,7 @@ export default function Map() {
     <div className="container">
       <main className="main">
         <h1 className="title">
-          Welcome to <a href="https://thirdweb.com/">thirdweb</a>!
+          .Welcome to <a href="https://thirdweb.com/">thirdweb</a>!
         </h1>
         <MapContainer
           style={{ width: "960px", height: "540px" }}
