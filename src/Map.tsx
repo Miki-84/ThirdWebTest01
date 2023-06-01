@@ -46,7 +46,7 @@ export default function Map() {
       for (let j = 0; j < 192; j++) {
         if (items[i][j] === "1") {
           var rectBounds = [[1 * i, 1 * j], [1 * (i + 1), 1 * (j + 1)]] as LatLngBoundsExpression
-          localLands.push(<Rectangle bounds={rectBounds} pathOptions={orange} />)
+          localLands.push(<Rectangle key={i + "-" + j} bounds={rectBounds} pathOptions={orange} />)
         }
         else{
           
@@ -54,23 +54,6 @@ export default function Map() {
       }
     }
     setLands(localLands)
-
-    
-    //NO VA
-    //return (<>lands</>)
-    
-    //FUNCIONA
-    // return(
-    //   <>
-    //   <Rectangle bounds={rectangle} pathOptions={orange} />
-    //   <Rectangle bounds={maxMapBounds} pathOptions={purpler} />
-    //   </>
-    // )
-
-    //
-
-    return(lands)
-   
   }
 
   return (
@@ -91,15 +74,7 @@ export default function Map() {
           maxZoom={6}
           crs={L.CRS.Simple}
         >
-          {/* <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          /> */}
           {lands}
-          <>
-          {/* <Rectangle bounds={rectangle} pathOptions={orange} /> */}
-          {/* <Rectangle bounds={maxMapBounds} pathOptions={purpler} /> */}
-          </>
         </MapContainer>
       </main>
     </div>
