@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 // import App from "./App";
-import Map from "./Map";
+import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ThirdwebProvider } from "@thirdweb-dev/react";
 import "./styles/globals.css";
@@ -16,7 +16,7 @@ const root = createRoot(container!);
 root.render(
   <React.StrictMode>
     {/* <ThirdwebProvider activeChain={activeChain}> */}
-      <Map />
+      <App />
     {/* </ThirdwebProvider> */}
   </React.StrictMode>
 );
